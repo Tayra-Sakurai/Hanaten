@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Shigino.Models
 {
-    public class PaymentMethod
+    public class Category
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         public ICollection<Item> Items { get; } = new List<Item>();
     }
 }
