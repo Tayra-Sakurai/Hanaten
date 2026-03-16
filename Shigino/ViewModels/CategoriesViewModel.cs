@@ -56,7 +56,7 @@ namespace Shigino.ViewModels
             Categories.Clear();
 
             await foreach (Category category in
-                context.Categories.AsAsyncEnumerable())
+                context.Categories.Include(c => c.Items).AsAsyncEnumerable())
                 Categories.Add(category);
         }
 
