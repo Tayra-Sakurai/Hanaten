@@ -85,7 +85,7 @@ namespace Shigino.ViewModels
             await LoadAsync();
         }
 
-        public bool ItemExists(Item item)
+        private bool ItemExists(Item item)
         {
             if (item == null) return false;
 
