@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Application
     x:Class="Hanaten.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Hanaten">
+    xmlns:local="using:Hanaten"
+    xmlns:models="using:Shigino.Models">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -12,5 +13,15 @@
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
         </ResourceDictionary>
+
+        <DataTemplate x:DataType="models:Category"
+                      x:Key="CategoryTemplate">
+            <TextBlock Text="{x:Bind Name}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MethodTemplate"
+                      x:DataType="models:PaymentMethod">
+            <TextBlock Text="{x:Bind Name}"/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

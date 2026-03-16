@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -10,6 +11,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using Shigino.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,12 +34,15 @@ namespace Hanaten
     {
         private Window? _window;
 
+        public IServiceProvider Services { get; }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
         {
+            Services = ConfigureService();
             InitializeComponent();
         }
 
@@ -50,5 +55,21 @@ namespace Hanaten
             _window = new MainWindow();
             _window.Activate();
         }
+
+        private static ServiceProvider ConfigureService()
+        {
+            ServiceCollection services = new();
+
+            services.AddTransient<CategoriesViewModel>();
+            services.AddTransient<CategoryViewModel>();
+            services.AddTransient<ItemsViewModel>();
+            services.AddTransient<ItemViewModel>();
+            services.AddTransient<PaymentMethodsViewModel>();
+            services.AddTransient<PaymentMethodViewModel>();
+
+            return services.BuildServiceProvider();
+        }
+
+        public static new App Current => (App)Application.Current;
     }
 }
