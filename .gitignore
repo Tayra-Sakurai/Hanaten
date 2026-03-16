@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Hanaten/Hanaten/Settings.settings
+/Hanaten/Hanaten/Settings.Designer.cs
