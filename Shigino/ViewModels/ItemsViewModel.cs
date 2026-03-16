@@ -98,5 +98,38 @@ namespace Shigino.ViewModels
 
             return true;
         }
+
+        [RelayCommand(CanExecute = nameof(CanFilterByCategory))]
+        public void FilterByCategory(Category category)
+        {
+            Item[] surprusItems =
+                [.. from item in Items
+                    where item.CategoryId != category.Id
+                    select item];
+            foreach (Item item in surprusItems)
+                Items.Remove(item);
+        }
+
+        private static bool CanFilterByCategory(Category category)
+        {
+            return category is not null;
+        }
+
+        [RelayCommand(CanExecute = nameof(CanFilterByMethod))]
+        public void FilterByMethod(PaymentMethod method)
+        {
+            Item[] itemsToBeExcluded =
+                [.. from item in Items
+                    where item.PaymentMethodId != method.Id
+                    select item];
+
+            foreach (Item item in itemsToBeExcluded)
+                Items.Remove(item);
+        }
+
+        private static bool CanFilterByMethod(PaymentMethod method)
+        {
+            return method is not null;
+        }
     }
 }
