@@ -40,7 +40,7 @@ namespace Shigino.ViewModels
             await LoadAsync();
         }
 
-        [RelayCommand(AllowConcurrentExecutions = false, CanExecute = nameof(CategoryExists)]
+        [RelayCommand(AllowConcurrentExecutions = false, CanExecute = nameof(CategoryExists))]
         public async Task RemoveAsync(Category category)
         {
             Categories.Remove(category);
