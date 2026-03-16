@@ -32,12 +32,6 @@ namespace Shigino.ViewModels
             set => SetProperty(category.Name, value, category, (m, v) => m.Name = v);
         }
 
-        public int Balance => context
-            .Entry(category)
-            .Collection(e => e.Items)
-            .Query()
-            .Sum(item => item.Income - item.Expense);
-
         public CategoryViewModel()
         {
             context = new();
@@ -53,7 +47,6 @@ namespace Shigino.ViewModels
         {
             category = await context.Categories.FindAsync(id);
             OnPropertyChanged(nameof(Name));
-            OnPropertyChanged(nameof(Balance));
         }
 
         /// <summary>

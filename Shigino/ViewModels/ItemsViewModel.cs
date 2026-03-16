@@ -131,5 +131,8 @@ namespace Shigino.ViewModels
         {
             return method is not null;
         }
+
+        public ObservableCollection<Category> Categories => [.. context.Categories.ToList()];
+        public ObservableCollection<PaymentMethod> PaymentMethods => [.. context.PaymentMethods.ToList()];
     }
 }
