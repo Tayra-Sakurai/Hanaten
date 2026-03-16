@@ -12,5 +12,6 @@
     <Platform Solution="*|x64" Project="x64" />
     <Platform Solution="*|x86" Project="x86" />
   </Project>
+  <Project Path="Kyobashi/Kyobashi.csproj" Id="d0207f1d-b0b9-4d89-977c-b029ace6cc03" />
   <Project Path="Shigino/Shigino.csproj" />
 </Solution>

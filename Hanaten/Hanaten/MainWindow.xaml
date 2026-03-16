@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Window
     x:Class="Hanaten.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -14,6 +14,21 @@
     </Window.SystemBackdrop>
 
     <Grid>
-
+        <NavigationView>
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Uid="BalanceSheetNavigation" Tag="BalanceSheet" Icon="Home"/>
+                <NavigationViewItem x:Uid="CategoryListNavigation" Tag="CategoryList">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8FD;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Uid="PaymentMethodsNavigation" Tag="PaymentMethods">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8C7;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            <Frame x:Name="SuperFrame"/>
+        </NavigationView>
     </Grid>
 </Window>

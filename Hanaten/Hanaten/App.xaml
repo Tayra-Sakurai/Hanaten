@@ -12,16 +12,16 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
+
+            <DataTemplate x:DataType="models:Category"
+                          x:Key="CategoryTemplate">
+                <TextBlock Text="{x:Bind Name}"/>
+            </DataTemplate>
+
+            <DataTemplate x:Key="MethodTemplate"
+                          x:DataType="models:PaymentMethod">
+                <TextBlock Text="{x:Bind Name}"/>
+            </DataTemplate>
         </ResourceDictionary>
-
-        <DataTemplate x:DataType="models:Category"
-                      x:Key="CategoryTemplate">
-            <TextBlock Text="{x:Bind Name}"/>
-        </DataTemplate>
-
-        <DataTemplate x:Key="MethodTemplate"
-                      x:DataType="models:PaymentMethod">
-            <TextBlock Text="{x:Bind Name}"/>
-        </DataTemplate>
     </Application.Resources>
 </Application>

@@ -11,6 +11,12 @@
     <WinUISDKReferences>false</WinUISDKReferences>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="Strings\en-GB\Resources.resw" />
+    <Content Remove="Strings\en-US\Resources.resw" />
+    <Content Remove="Strings\en\Resources.resw" />
+    <Content Remove="Strings\ja-JP\Resources.resw" />
+  </ItemGroup>
 
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
@@ -27,6 +33,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shigino\Shigino.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="BalanceSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\" />
   </ItemGroup>
 
     <!-- Publish Properties -->
