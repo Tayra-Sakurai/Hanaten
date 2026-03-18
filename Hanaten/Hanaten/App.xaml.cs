@@ -11,16 +11,22 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using Microsoft.Windows.PushNotifications;
 using Shigino.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.System;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -33,6 +39,8 @@ namespace Hanaten
     public partial class App : Application
     {
         private Window? _window;
+
+        private readonly Guid remoteId = new("2d1b291c-2438-4a04-9eae-046fbefa468a");
 
         public IServiceProvider Services { get; }
 
@@ -50,10 +58,43 @@ namespace Hanaten
         /// Invoked when the application is launched.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
-        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+        protected async override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+
+            IReadOnlyList<User> users = await User.FindAllAsync(UserType.LocalUser, UserAuthenticationStatus.LocallyAuthenticated);
+            Debug.WriteLine(users.FirstOrDefault()?.NonRoamableId);
+            PushNotificationManager.Default.PushReceived += Default_PushReceived;
+            PushNotificationManager.Default.Register();
+
+            if (PushNotificationManager.IsSupported())
+            {
+                await RequestChannelAsync();
+            }
+
             _window = new MainWindow();
             _window.Activate();
+        }
+
+        private void Default_PushReceived(PushNotificationManager sender, PushNotificationReceivedEventArgs args)
+        {
+            Debug.WriteLine(args.Payload.ToString());
+        }
+
+        private async Task<PushNotificationChannel?> RequestChannelAsync()
+        {
+            var result = await PushNotificationManager.Default.CreateChannelAsync(remoteId);
+
+            if (result == null)
+            {
+                return null;
+            }
+
+            if (result.Status == PushNotificationChannelStatus.CompletedSuccess)
+            {
+                return result.Channel;
+            }
+
+            return null;
         }
 
         private static ServiceProvider ConfigureService()
