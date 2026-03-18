@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="Hanaten.BalanceSheet"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -6,9 +6,65 @@
     xmlns:local="using:Hanaten"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:Shigino.Models"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid Background="{ThemeResource SolidBackgroundFillColorBaseBrush}"
+          Padding="12,16"
+          RowSpacing="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <TextBlock Style="{StaticResource BodyTextBlockStyle}" x:Uid="BalanceSheetDescriptions"
+                   TextWrapping="WrapWholeWords"/>
+
+        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                   TextWrapping="WrapWholeWords"
+                   Grid.Row="1">
+            <Span>
+                <Run Text="{x:Bind viewModel.Items.Count}"/>
+                <Run x:Uid="ItemsFoundMessage"/>
+            </Span>
+        </TextBlock>
+
+        <ListView x:Name="SuperListView"
+                  ItemsSource="{x:Bind viewModel.Items}"
+                  Grid.Row="2">
+            <ListView.Header>
+                <controls:DataTable>
+                    <controls:DataColumn x:Uid="IdColumn" DesiredWidth="40"/>
+                    <controls:DataColumn x:Uid="DateTimeColumn" DesiredWidth="100"/>
+                    <controls:DataColumn x:Uid="CategoryColumn" DesiredWidth="2*"/>
+                    <controls:DataColumn x:Uid="ItemNameColumn" DesiredWidth="4*"/>
+                    <controls:DataColumn x:Uid="MethodColumn" DesiredWidth="80"/>
+                    <controls:DataColumn x:Uid="ExpenseColumn" DesiredWidth="*"/>
+                    <controls:DataColumn x:Uid="IncomeColumn" DesiredWidth="*"/>
+                </controls:DataTable>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Item">
+                    <controls:DataRow>
+                        <TextBlock Text="{x:Bind Id}"/>
+                        <TextBlock Text="{x:Bind DateAndTime}"/>
+                        <TextBlock Text="{x:Bind Category.Name}"/>
+                        <TextBlock Text="{x:Bind Name}"/>
+                        <TextBlock Text="{x:Bind PaymentMethod.Name}"/>
+                        <TextBlock Text="{x:Bind Expense}"/>
+                        <TextBlock Text="{x:Bind Income}"/>
+                    </controls:DataRow>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem"
+                       BasedOn="{StaticResource DefaultListViewItemStyle}">
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
     </Grid>
 </Page>

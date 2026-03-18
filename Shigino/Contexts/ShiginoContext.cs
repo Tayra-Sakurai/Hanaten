@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Windows.Storage;
 
@@ -29,6 +30,21 @@ namespace Shigino.Contexts
         {
             optionsBuilder.UseSqlite(
                 $"Data Source={DbPath}");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Category>()
+                .Property(e => e.Vector)
+                .HasConversion(
+                e => JsonSerializer.Serialize(e, JsonSerializerOptions.Default),
+                e => JsonSerializer.Deserialize<List<float>>(e, JsonSerializerOptions.Default));
+            modelBuilder.Entity<Item>()
+                .Property(e => e.Vector)
+                .HasConversion(
+                e => JsonSerializer.Serialize(e, JsonSerializerOptions.Default),
+                e => JsonSerializer.Deserialize<List<float>>(e, JsonSerializerOptions.Default));
+            modelBuilder.Entity<PaymentMethod>();
         }
     }
 }

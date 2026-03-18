@@ -117,11 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BalanceSheetDescriptions.Text" xml:space="preserve">
+    <value>You can see the data here.</value>
+  </data>
   <data name="BalanceSheetNavigation.Content" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="CategoryColumn.Content" xml:space="preserve">
+    <value>Category</value>
+  </data>
   <data name="CategoryListNavigation.Content" xml:space="preserve">
     <value>Categories</value>
+  </data>
+  <data name="DateTimeColumn.Content" xml:space="preserve">
+    <value>Date and Time</value>
+  </data>
+  <data name="IdColumn.Content" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="ItemNameColumn.Content" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="ItemsFoundMessage.Text" xml:space="preserve">
+    <value>items have been found.</value>
   </data>
   <data name="PaymentMethodsNavigation.Content" xml:space="preserve">
     <value>Balance Checker</value>

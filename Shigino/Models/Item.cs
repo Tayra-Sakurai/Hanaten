@@ -20,6 +20,7 @@ namespace Shigino.Models
         public int CategoryId { get; set; }
         public int Expense { get; set; } = 0;
         public int Income { get; set; } = 0;
+        public List<float> Vector { get; set; } = [];
         public PaymentMethod PaymentMethod { get; set; } = null!;
         public Category Category { get; set; } = null!;
     }

@@ -30,6 +30,13 @@ namespace Hanaten
         public MainWindow()
         {
             InitializeComponent();
+
+            Activated += MainWindow_Activated;
+        }
+
+        private void MainWindow_Activated(object sender, WindowActivatedEventArgs args)
+        {
+            SuperFrame.Navigate(typeof(BalanceSheet));
         }
     }
 }

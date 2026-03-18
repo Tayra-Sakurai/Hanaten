@@ -117,13 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BalanceSheetDescriptions.Text" xml:space="preserve">
+    <value>このページでは小遣い帳を確認できます．</value>
+    <comment>Description of the BalanceSheet page.</comment>
+  </data>
   <data name="BalanceSheetNavigation.Content" xml:space="preserve">
     <value>ホーム</value>
     <comment>Home</comment>
   </data>
+  <data name="CategoryColumn.Content" xml:space="preserve">
+    <value>カテゴリー</value>
+    <comment>Category column.</comment>
+  </data>
   <data name="CategoryListNavigation.Content" xml:space="preserve">
     <value>カテゴリー</value>
     <comment>Category page link.</comment>
+  </data>
+  <data name="DateTimeColumn.Content" xml:space="preserve">
+    <value>日時</value>
+    <comment>Simple description for the table header of the date and time column.</comment>
+  </data>
+  <data name="IdColumn.Content" xml:space="preserve">
+    <value>ID</value>
+    <comment>No. column.</comment>
+  </data>
+  <data name="ItemNameColumn.Content" xml:space="preserve">
+    <value>項目名</value>
+    <comment>Item name header.</comment>
+  </data>
+  <data name="ItemsFoundMessage.Text" xml:space="preserve">
+    <value>個の項目が見つかりました．</value>
+    <comment>Message that tells how many items are found.</comment>
   </data>
   <data name="PaymentMethodsNavigation.Content" xml:space="preserve">
     <value>決済手段別の残高</value>

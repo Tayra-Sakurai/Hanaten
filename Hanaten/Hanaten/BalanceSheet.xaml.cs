@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +12,8 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Shigino.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -23,8 +25,20 @@ namespace Hanaten;
 /// </summary>
 public sealed partial class BalanceSheet : Page
 {
+    private ItemsViewModel viewModel;
+
     public BalanceSheet()
     {
         InitializeComponent();
+
+        viewModel = App.Current.Services.GetRequiredService<ItemsViewModel>();
+    }
+
+    /// <inheritdoc/>
+    protected async override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+
+        await viewModel.LoadAsync();
     }
 }

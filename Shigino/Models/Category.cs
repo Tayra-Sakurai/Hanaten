@@ -14,6 +14,7 @@ namespace Shigino.Models
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
+        public List<float> Vector { get; set; } = [];
         public ICollection<Item> Items { get; } = new List<Item>();
     }
 }
